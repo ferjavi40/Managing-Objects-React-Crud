@@ -1,26 +1,47 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
-const LinkForm = () =>{
+const LinkForm = () => {
+
+    const initialStateValues = {
+        url: '',
+        name:'',
+        description:''
+    }
+
+    const [values, setValues]= useState (initialStateValues);
+
+    const handleInputChanges = e =>{
+        console.log(e.target.value);
+    }
+
+    const handleSubmit = e =>{
+        e.preventDefault();
+        console.log(values)
+    }
     return (
-        <form className="card card-body">
+        <form className="card card-body" onSubmit={handleSubmit}>
             <div className="form-group input-group">
                 <div className="input-group-text bg-light">
-                <i class="far fa-plus-square fa-2x mr-n2"></i>
+                    <i className="far fa-plus-square fa-2x mr-n2"></i>
                 </div>
-                <input type="text" className="form-control" placeholder="https://someurl.com" name="url"/>
+                <input onChange={handleInputChanges} type="text" className="form-control" placeholder="https://someurl.com" name="url" />
             </div>
 
             <div className="form-group input-group">
                 <div className="input-group-text bg-light">
-                <i class="fas fa-pencil-alt fa-2x mr-n2"></i>
+                    <i className="fas fa-pencil-alt fa-2x mr-n2"></i>
                 </div>
-                <input type="text" className="form-control" name="name" placeholder="website name"/>
+                <input onChange={handleInputChanges} type="text" className="form-control" name="name" placeholder="website name" />
             </div>
 
             <div className="form-group">
-                <textarea name="descripcion"  rows="3" className="form-control" placeholder="Write a description"></textarea>
+                <textarea onChange={handleInputChanges} name="descripcion" rows="3" className="form-control" placeholder="Write a description"></textarea>
             </div>
+
+            <button className="btn btn-primary">
+                Save
+            </button>
 
         </form>
     )
