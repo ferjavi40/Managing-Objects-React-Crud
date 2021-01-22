@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import LinkForm from './LinkForm'
 import { db } from '../firebase'
+//notificaiones
+import {toast}  from 'react-toastify'
 
 const Links = () => {
 
-    const [links, setLinks] = useState([])
+    const [links, setLinks] = useState([]);
+    const [currentId, setCurrentId] = useState('');
 
     const addOrEdit = async (linkObject) => {
         await db.collection('docs').doc().set(linkObject);
-        console.log("new task added");
+        toast("New data added", {
+            type: "success",
+        });
     };
 
     const onDeleteLink = async (id) => {
         if (window.confirm('Are you sure you want to delete this file?')) {
             await db.collection('docs').doc(id).delete();
-            console.log('task deleted');
+            toast("data deleted", {
+                type: "error", autoClose:2000
+            });
         }
 
     }
@@ -38,7 +45,7 @@ const Links = () => {
 
     return <div className="container text-center">
         <div className="col-md-10">
-            <LinkForm addOrEdit={addOrEdit} />
+            <LinkForm {...{addOrEdit,currentId,links}} />
         </div>
         <div className="col-md-10 text-center">
             {links.map(link => (
@@ -46,7 +53,11 @@ const Links = () => {
                     <div className="card-body">
                         <div className="d-flex justify-content-between">
                             <h4>{link.name}</h4>
-                            <i onClick={() => onDeleteLink(link.id)} className="material-icons text-danger cursor">close</i>
+                            <div>
+                            <i onClick={() => onDeleteLink(link.id)} className="material-icons text-danger cursor mr-5">close</i>
+                            <i onClick={()=>setCurrentId(link.id)} className="material-icons text-success cursor">create</i>
+                            </div>
+
                         </div>
                         <p>{link.description}</p>
                     </div>
