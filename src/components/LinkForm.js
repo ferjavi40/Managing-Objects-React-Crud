@@ -1,23 +1,26 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 
-const LinkForm = () => {
+const LinkForm = (props) => {
 
     const initialStateValues = {
-        url: '',
-        name:'',
-        description:''
+        url: "",
+        name: "",
+        description: "",
+    };
+
+    const [values, setValues] = useState(initialStateValues);
+
+    const handleInputChanges = (e) => {
+        const {name, value} = e.target;
+        setValues({...values, [name] : value})
+        
     }
 
-    const [values, setValues]= useState (initialStateValues);
-
-    const handleInputChanges = e =>{
-        console.log(e.target.value);
-    }
-
-    const handleSubmit = e =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values)
+        props.addOrEdit(values);
+        setValues({...initialStateValues});
     }
     return (
         <form className="card card-body" onSubmit={handleSubmit}>
@@ -25,18 +28,33 @@ const LinkForm = () => {
                 <div className="input-group-text bg-light">
                     <i className="far fa-plus-square fa-2x mr-n2"></i>
                 </div>
-                <input onChange={handleInputChanges} type="text" className="form-control" placeholder="https://someurl.com" name="url" />
+                <input onChange={handleInputChanges}
+                value={values.url}
+                    type="text"
+                    className="form-control"
+                    placeholder="https://someurl.com"
+                    name="url" />
             </div>
 
             <div className="form-group input-group">
                 <div className="input-group-text bg-light">
                     <i className="fas fa-pencil-alt fa-2x mr-n2"></i>
                 </div>
-                <input onChange={handleInputChanges} type="text" className="form-control" name="name" placeholder="website name" />
+                <input onChange={handleInputChanges}
+                value={values.name}
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    placeholder="website name" />
             </div>
 
             <div className="form-group">
-                <textarea onChange={handleInputChanges} name="descripcion" rows="3" className="form-control" placeholder="Write a description"></textarea>
+                <textarea onChange={handleInputChanges}
+                    value={values.description}
+                    name="description"
+                    rows="3"
+                    className="form-control"
+                    placeholder="Write a description"></textarea>
             </div>
 
             <button className="btn btn-primary">
