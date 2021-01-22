@@ -1,9 +1,20 @@
-
+import React from 'react';
 import './App.css';
+
+//componentes
+import Links from './components/Links'
+import LinkForm from './components/LinkForm'
 
 function App() {
   return (
-    <h1>hello World</h1>
+    <div className="container  p-4">
+      <div className="row">
+      <LinkForm/>
+      <Links/>
+      
+      </div>
+    </div>
+
   );
 }
 

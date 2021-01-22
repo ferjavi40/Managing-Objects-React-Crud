@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 //firebase
 import './firebase'
+//bootstrap
+import 'bootswatch/dist/cyborg/bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
