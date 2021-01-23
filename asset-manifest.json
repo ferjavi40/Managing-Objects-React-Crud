@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Managing-Objects-React-Crud/static/css/main.5f84b03d.chunk.css",
+    "main.js": "/Managing-Objects-React-Crud/static/js/main.105f53d5.chunk.js",
+    "main.js.map": "/Managing-Objects-React-Crud/static/js/main.105f53d5.chunk.js.map",
+    "runtime-main.js": "/Managing-Objects-React-Crud/static/js/runtime-main.e7862dee.js",
+    "runtime-main.js.map": "/Managing-Objects-React-Crud/static/js/runtime-main.e7862dee.js.map",
+    "static/css/2.d15a9ea5.chunk.css": "/Managing-Objects-React-Crud/static/css/2.d15a9ea5.chunk.css",
+    "static/js/2.1c97a447.chunk.js": "/Managing-Objects-React-Crud/static/js/2.1c97a447.chunk.js",
+    "static/js/2.1c97a447.chunk.js.map": "/Managing-Objects-React-Crud/static/js/2.1c97a447.chunk.js.map",
+    "static/js/3.7b848e9f.chunk.js": "/Managing-Objects-React-Crud/static/js/3.7b848e9f.chunk.js",
+    "static/js/3.7b848e9f.chunk.js.map": "/Managing-Objects-React-Crud/static/js/3.7b848e9f.chunk.js.map",
+    "index.html": "/Managing-Objects-React-Crud/index.html",
+    "static/css/2.d15a9ea5.chunk.css.map": "/Managing-Objects-React-Crud/static/css/2.d15a9ea5.chunk.css.map",
+    "static/css/main.5f84b03d.chunk.css.map": "/Managing-Objects-React-Crud/static/css/main.5f84b03d.chunk.css.map",
+    "static/js/2.1c97a447.chunk.js.LICENSE.txt": "/Managing-Objects-React-Crud/static/js/2.1c97a447.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e7862dee.js",
+    "static/css/2.d15a9ea5.chunk.css",
+    "static/js/2.1c97a447.chunk.js",
+    "static/css/main.5f84b03d.chunk.css",
+    "static/js/main.105f53d5.chunk.js"
+  ]
+}
