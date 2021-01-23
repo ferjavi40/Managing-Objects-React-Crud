@@ -50,7 +50,7 @@ const LinkForm = (props) => {
                     value={values.type}
                     type="text"
                     className="form-control"
-                    placeholder="Number"
+                    placeholder="Type"
                     name="type" />
             </div>
 
