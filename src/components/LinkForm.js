@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { db } from '../firebase';
 
 
 
@@ -14,16 +15,31 @@ const LinkForm = (props) => {
     const [values, setValues] = useState(initialStateValues);
 
     const handleInputChanges = (e) => {
-        const {name, value} = e.target;
-        setValues({...values, [name] : value})
-        
+        const { name, value } = e.target;
+        setValues({ ...values, [name]: value })
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         props.addOrEdit(values);
-        setValues({...initialStateValues});
+        setValues({ ...initialStateValues });
+    };
+
+    const getLinkById = async (id) => {
+        const doc = await db.collection('docs').doc(id).get();
+        setValues({ ...doc.data() })
     }
+
+    useEffect(() => {
+        console.log(props.currentId);
+        if (props.currentId === "") {
+            setValues({ ...initialStateValues });
+        } else {
+            getLinkById(props.currentId);
+        }
+    }, [props.currentId]);
+
     return (
         <form className="card card-body" onSubmit={handleSubmit}>
             <div className="form-group input-group">
@@ -31,7 +47,7 @@ const LinkForm = (props) => {
                     <i className="far fa-plus-square fa-2x mr-n2"></i>
                 </div>
                 <input onChange={handleInputChanges}
-                value={values.url}
+                    value={values.url}
                     type="text"
                     className="form-control"
                     placeholder="https://someurl.com"
@@ -43,7 +59,7 @@ const LinkForm = (props) => {
                     <i className="fas fa-pencil-alt fa-2x mr-n2"></i>
                 </div>
                 <input onChange={handleInputChanges}
-                value={values.name}
+                    value={values.name}
                     type="text"
                     className="form-control"
                     name="name"
@@ -60,7 +76,7 @@ const LinkForm = (props) => {
             </div>
 
             <button className="btn btn-primary">
-                Save
+                {props.currentId=== ''? 'Save' : 'Update'}
             </button>
 
         </form>
