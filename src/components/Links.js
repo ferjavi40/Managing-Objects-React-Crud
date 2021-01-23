@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import LinkForm from './LinkForm'
 import { db } from '../firebase'
 //notificaiones
-import {toast}  from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const Links = () => {
 
@@ -10,17 +10,31 @@ const Links = () => {
     const [currentId, setCurrentId] = useState('');
 
     const addOrEdit = async (linkObject) => {
-        await db.collection('docs').doc().set(linkObject);
-        toast("New data added", {
-            type: "success",
-        });
+        try {
+            if (currentId === "") {
+                await db.collection('docs').doc().set(linkObject);
+                toast("New data added", {
+                    type: "success",
+                });
+            }else {
+                await db.collection('docs').doc(currentId).update(linkObject);
+                toast("File Updated successfully", {
+                    type: "Info",
+                });
+                setCurrentId('');
+            }
+
+        } catch(error){
+            console.error(error);
+
+        }
     };
 
     const onDeleteLink = async (id) => {
         if (window.confirm('Are you sure you want to delete this file?')) {
             await db.collection('docs').doc(id).delete();
             toast("data deleted", {
-                type: "error", autoClose:2000
+                type: "error", autoClose: 2000
             });
         }
 
@@ -45,7 +59,7 @@ const Links = () => {
 
     return <div className="container text-center">
         <div className="col-md-10">
-            <LinkForm {...{addOrEdit,currentId,links}} />
+            <LinkForm {...{ addOrEdit, currentId, links }} />
         </div>
         <div className="col-md-10 text-center">
             {links.map(link => (
@@ -54,8 +68,8 @@ const Links = () => {
                         <div className="d-flex justify-content-between">
                             <h4>{link.name}</h4>
                             <div>
-                            <i onClick={() => onDeleteLink(link.id)} className="material-icons text-danger cursor mr-5">close</i>
-                            <i onClick={()=>setCurrentId(link.id)} className="material-icons text-success cursor">create</i>
+                                <i onClick={() => onDeleteLink(link.id)} className="material-icons text-danger cursor mr-5">close</i>
+                                <i onClick={() => setCurrentId(link.id)} className="material-icons text-success cursor">create</i>
                             </div>
 
                         </div>

@@ -21,7 +21,7 @@ const LinkForm = (props) => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         props.addOrEdit(values);
         setValues({ ...initialStateValues });
     };
@@ -50,7 +50,7 @@ const LinkForm = (props) => {
                     value={values.url}
                     type="text"
                     className="form-control"
-                    placeholder="https://someurl.com"
+                    placeholder="name"
                     name="url" />
             </div>
 
