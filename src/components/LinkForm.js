@@ -7,7 +7,7 @@ import { db } from '../firebase';
 const LinkForm = (props) => {
 
     const initialStateValues = {
-        url: "",
+        type: "",
         name: "",
         description: "",
     };
@@ -47,11 +47,11 @@ const LinkForm = (props) => {
                     <i className="far fa-plus-square fa-2x mr-n2"></i>
                 </div>
                 <input onChange={handleInputChanges}
-                    value={values.url}
+                    value={values.type}
                     type="text"
                     className="form-control"
-                    placeholder="name"
-                    name="url" />
+                    placeholder="Number"
+                    name="type" />
             </div>
 
             <div className="form-group input-group">
@@ -63,7 +63,7 @@ const LinkForm = (props) => {
                     type="text"
                     className="form-control"
                     name="name"
-                    placeholder="website name" />
+                    placeholder="Name" />
             </div>
 
             <div className="form-group">

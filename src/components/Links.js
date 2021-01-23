@@ -66,7 +66,7 @@ const Links = () => {
                 <div className="card mt-3 mb-1" key={link.id}>
                     <div className="card-body">
                         <div className="d-flex justify-content-between">
-                            <h4>{link.name}</h4>
+                            <h4>{link.name} : {link.type}</h4>
                             <div>
                                 <i onClick={() => onDeleteLink(link.id)} className="material-icons text-danger cursor mr-5">close</i>
                                 <i onClick={() => setCurrentId(link.id)} className="material-icons text-success cursor">create</i>
